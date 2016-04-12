@@ -82,7 +82,8 @@ class BarcodeManager {
     public function getBarcode($format, $data, $type, $w = 2, $h = 30, $color = 'black') {
         if(isset(self::$TYPES_1D[$type])) {
             $generator = new DNS1D();
-        } else if(isset(self::$TYPES_2D[$type])) {
+        } 
+        else if(isset(self::$TYPES_2D[$type])) {
             $generator = new DNS2D();
             if($w == 2 and $h == 30 and $color == 'black') {
                 $w = 10;
@@ -92,9 +93,11 @@ class BarcodeManager {
         
         if($format == 'HTML') {
             return $generator->getBarcodeHTML($data, $type, $w, $h, $color);
-        } else if($format == 'SVG') {
+        } 
+        else if($format == 'SVG') {
             return $generator->getBarcodeSVG($data, $type, $w, $h, $color);
-        } else if($format == 'PNG') {
+        } 
+        else if($format == 'PNG') {
             return $generator->getBarcodePNG($data, $type, $w, $h, $color);
         }
     }

@@ -7,7 +7,7 @@ class Barcode extends ComponentBase
 {
     public $format, $type, $data, $width, $height, $color;
     
-    private $barcode_manager;
+    private $barcodeManager;
     
     /**
      * Returns details about this component.
@@ -78,7 +78,7 @@ class Barcode extends ComponentBase
     }
     
     public function onRun() {
-        $this->barcode_manager = new BarcodeManager();
+        $this->barcodeManager = new BarcodeManager();
         $this->format = $this->property('format');
         $this->type = $this->property('type');
         $this->data = $this->property('data');
@@ -88,7 +88,7 @@ class Barcode extends ComponentBase
     }
     
     public function getBarcode() {
-        return $this->barcode_manager->getBarcode($this->format, $this->data, $this->type, $this->width, $this->height, $this->color);
+        return $this->barcodeManager->getBarcode($this->format, $this->data, $this->type, $this->width, $this->height, $this->color);
     }
     
 }

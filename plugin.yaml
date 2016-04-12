@@ -3,4 +3,4 @@ plugin:
     description: 'kocholes.barcodegenerator::lang.plugin.description'
     author: 'Gonzalo Garro'
     icon: oc-icon-barcode
-    homepage: ''
+    homepage: 'https://github.com/kocholes/barcode-generator-plugin'
