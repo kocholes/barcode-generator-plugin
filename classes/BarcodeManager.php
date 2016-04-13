@@ -79,13 +79,13 @@ class BarcodeManager {
      * @param string $color Foreground color for bar elements (background is transparent).
      * @return string
      */
-    public function getBarcode($format, $data, $type, $w = 2, $h = 30, $color = 'black') {
+    public function getBarcode($format, $data, $type, $w, $h, $color) {
         if(isset(self::$TYPES_1D[$type])) {
             $generator = new DNS1D();
         } 
         else if(isset(self::$TYPES_2D[$type])) {
             $generator = new DNS2D();
-            if($w == 2 and $h == 30 and $color == 'black') {
+            if($w == 2 and $h == 30) {
                 $w = 10;
                 $h = 10;
             }

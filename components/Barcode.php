@@ -30,18 +30,23 @@ class Barcode extends ComponentBase
                 'description'       => 'kocholes.barcodegenerator::lang.barcode.format_desc',
                 'default'           => 'HTML',
                 'type'              => 'dropdown',
-                'options'           => ['HTML' => 'HTML','PNG' => 'PNG', 'SVG' => 'SVG']
+                'options'           => ['HTML' => 'HTML','PNG' => 'PNG', 'SVG' => 'SVG'],
+                'required'          => true,
+                'showExternalParam' => false
             ],
             "type" => [
                 'title'             => 'kocholes.barcodegenerator::lang.barcode.type_title',
                 'description'       => 'kocholes.barcodegenerator::lang.barcode.type_desc',
                 'default'           => 'C39',
-                'type'              => 'dropdown'
+                'type'              => 'dropdown',
+                'required'          => true,
+                'showExternalParam' => false
             ],
             "data" => [
                 'title'             => 'kocholes.barcodegenerator::lang.barcode.data_title',
                 'description'       => 'kocholes.barcodegenerator::lang.barcode.data_desc',
-                'type'              => 'string'
+                'type'              => 'string',
+                'required'          => true,
             ],
             "width" => [
                 'title'             => 'kocholes.barcodegenerator::lang.barcode.width_title',
@@ -68,6 +73,7 @@ class Barcode extends ComponentBase
                     'gray'      => 'kocholes.barcodegenerator::lang.barcode.color_gray'
                 ],
                 'default'           => 'black',
+                'showExternalParam' => false
             ],
         ];
     }
@@ -88,7 +94,33 @@ class Barcode extends ComponentBase
     }
     
     public function getBarcode() {
+        if($this->format == 'PNG') {
+            $this->colorToArray();
+        }
         return $this->barcodeManager->getBarcode($this->format, $this->data, $this->type, $this->width, $this->height, $this->color);
+    }
+    
+    private function colorToArray() {
+        switch ($this->color) {
+            case 'black':
+                $this->color = [0,0,0];
+                break;
+            case 'blue':
+                $this->color = [0,0,255];
+                break;
+            case 'red':
+                $this->color = [0,255,0];
+                break;
+            case 'green':
+                $this->color = [255,0,0];
+                break;
+            case 'gray':
+                $this->color = [128,128,128];
+                break;
+            case 'yellow':
+                $this->color = [255,255,0];
+                break;
+        }
     }
     
 }
